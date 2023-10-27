@@ -1,55 +1,57 @@
 //computer choice 
 function getComputerChoice() {
-    let array = ['rock', 'paper', 'scissors']
-    return array[Math.floor(Math.random() * array.length)].toString()
+    let choices = ['rock', 'paper', 'scissors']
+    let randomValue = choices[Math.floor(Math.random() * choices.length)].toString()
+    return randomValue
 }
 
+//player choice
+function getPlayerChoice () {
+    let inputValue = prompt('Rock, Paper, Scissors, SHOOT!:')
+    inputValue = inputValue.toLowerCase()
+    if (!((inputValue === 'rock') || (inputValue === 'paper') || (inputValue === 'scissors'))) {
+        alert('Invalid input. Please try again.')
+        return getPlayerChoice()
+    } else {
+        return inputValue
+    }
+}
+let playerScore = 0
+let computerScore = 0
 //Round
 function playRound(playerSelection, computerSelection) {
-
+    
     if (playerSelection === computerSelection) {
         return 'It\'s a tie. Play the next round.'
     } else if ((playerSelection === 'rock') && (computerSelection === 'paper')) {
+        computerScore++
         return 'You lose this round. Paper beats rock.'
     } else if ((playerSelection === 'paper') && (computerSelection === 'scissors')) {
+        computerScore++
         return 'You lose this round. Scissors beats paper.'
     } else if ((playerSelection === 'scissors') && (computerSelection === 'rock')) {
+        computerScore++
         return 'You lose this round. Rock beats scissors.'
-        //add a prompt? how do I get it to loop back to if else again?
-    } if (!(playerSelection === 'rock' || playerSelection === 'paper' || playerSelection === 'scissors')) {
-        return 'Invalid entry: Please type "rock", "paper", or "scissors"'
     } else {
+        playerScore++
         return ('You win this round!')
     }
-}
+} 
 
-//game of 5 rounds that 
-//DONE: keeps score and 
-//DONE: reports a winner or loser at the end
 function game() {
-    let computerScore = 0
-    let playerScore = 0
-    
-    let winnerOfRound = playRound(playerSelection, computerSelection) 
-    if (winnerOfRound.includes('win')) {
-        playerScore++
-        return `Your score: ${playerScore}    Computer score: ${computerScore}`
-    } else if (winnerOfRound.includes('lose')) {
-        computerScore++
-        return `Your score: ${playerScore}    Computer score: ${computerScore}`
-    } else if (winnerOfRound.includes('tie')) {
-        return `Your score: ${playerScore}    Computer score: ${computerScore}`
-    } 
+    console.log(playRound(getPlayerChoice(), getComputerChoice()))
+    console.log(playRound(getPlayerChoice(), getComputerChoice()))
+    console.log(playRound(getPlayerChoice(), getComputerChoice()))
+    console.log(playRound(getPlayerChoice(), getComputerChoice()))
+    console.log(playRound(getPlayerChoice(), getComputerChoice()))
 }
 
 computerSelection = getComputerChoice()
-playerSelection = prompt('Rock, Paper, Scissors: SHOOT!', 'RO')
-    playerSelection = playerSelection.toLowerCase()
-
-console.log(computerSelection)
-console.log(playerSelection)
-console.log(playRound(playerSelection, computerSelection))
+playerSelection = getPlayerChoice()
 console.log(game())
+//game of 5 rounds that 
+//DONE: keeps score and 
+//DONE: reports a winner or loser at the end
 
 //if (playerScore === computerScore) {
     //return 'It\'s a draw. No one wins the game.'
@@ -58,3 +60,4 @@ console.log(game())
 //} else {
     //return 'You lost the game.'
 //}
+
