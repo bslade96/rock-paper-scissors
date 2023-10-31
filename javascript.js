@@ -45,26 +45,52 @@ function playRound() {
     if (compChoice === playerChoice) {
         console.log(`Comp choice: ${compChoice}`)
         console.log(`Your choice: ${playerChoice}`)
-        return "It's a tie."
+        console.log("It's a tie for this round.")
+        return "tie"
     } else if (compChoice === "rock" && playerChoice === "scissors") {
         console.log(`Comp choice: ${compChoice}`)
         console.log(`Your choice: ${playerChoice}`)
-        return "You lose. Rock beats scissors."
+        console.log("You lose this round. Rock beats scissors.")
+        return "lose"
     } else if (compChoice === "paper" && playerChoice === "rock") {
         console.log(`Comp choice: ${compChoice}`)
         console.log(`Your choice: ${playerChoice}`)
-        return "You lose. Paper beats rock."
+        console.log("You lose this round. Paper beats rock.")
+        return "lose"
     } else if (compChoice === "scissors" && playerChoice === "paper") {
         console.log(`Comp choice: ${compChoice}`)
         console.log(`Your choice: ${playerChoice}`)
-        return "You lose. Scissors beats paper."
+        console.log("You lose this round. Scissors beats paper.")
+        return "lose"
     } else {
         console.log(`Comp choice: ${compChoice}`)
         console.log(`Your choice: ${playerChoice}`)
-        return "You win!"
-    }
-
+        console.log("You win this round!")
+        return "win"
+    } 
 }
 
-console.log(playRound())
+//INITIALIZE a game function
+    //USE previous function inside the game
+    //CREATE a FOR loop to loop the playRound function 5 times.
+    //
+function game() {
+    let compScore = 0
+    let playerScore = 0
+
+    for(let i = 0; i < 5; i++) {
+        let roundResult = playRound()
+        if (roundResult === "lose") {
+            compScore++
+            console.log(`COMP SCORE: ${compScore}  YOUR SCORE: ${playerScore}`)
+        } else if (roundResult === "win") {
+            playerScore++
+            console.log(`COMP SCORE: ${compScore}  YOUR SCORE: ${playerScore}`)
+        } else {
+            console.log(`COMP SCORE: ${compScore}  YOUR SCORE: ${playerScore}`)
+        }
+    } 
+}
+
+game()
     
