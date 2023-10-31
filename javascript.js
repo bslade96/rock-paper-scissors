@@ -1,20 +1,11 @@
-//INITIALIZE computer choice
-    //CREATE an array containing the following choices: "rock", "paper", and "scissors"
-    //INITIALIZE a new variable containing the previous array to GET a random choice.
-    //RETURN result
+//Comp choice
 function getComputerChoice() {
     let choices = ["rock", "paper", "scissors"]
     let result = choices[Math.floor(Math.random() * choices.length)]
     return result
 }
 
-//INITIALIZE player choice
-    //prompt an INPUT from the user to make a choice and STORE in a variable. Case insensitive.
-    // IF choice STRICTLY EQUALS "rock", "paper", "scissors"
-        //RETURN choice
-    //ELSE
-        //alert invalid
-        //prompt function again
+//Player choice
 function getPlayerChoice() {
     let input = prompt("Rock, Paper, Scissors, SHOOT!: ")
     let choice = input.toLowerCase()
@@ -27,17 +18,7 @@ function getPlayerChoice() {
     }
 }
 
-//INITIALIZE a single round with 2 parameters for the comp and player
-    //INITIALIZE a variable containing the comp choice function.
-    //INITIALIZE a variable containing the player choice
-    //IF player's choice EQUALS 'rock' AND comp choice EQUALS 'paper'
-        //PRINT the player lost.
-    //IF player choice EQUALS 'paper' AND comp choice EQUALS 'scissors'
-        //PRINT the player lost.
-    //IF player choice EQUALS 'scissors' AND comp choice EQUALS 'rock'
-        //PRINT the player lost.
-    //ELSE
-        //PRINT player win.
+//Single round
 function playRound() {
     let compChoice = getComputerChoice()
     let playerChoice = getPlayerChoice()
@@ -77,19 +58,35 @@ function playRound() {
 function game() {
     let compScore = 0
     let playerScore = 0
+    let round = 1
 
     for(let i = 0; i < 5; i++) {
+        console.log(`    ---------- ROUND ${round++} ----------    `)
         let roundResult = playRound()
         if (roundResult === "lose") {
             compScore++
-            console.log(`COMP SCORE: ${compScore}  YOUR SCORE: ${playerScore}`)
+            console.log(`Comp score - ${compScore}       Your score - ${playerScore}`)
         } else if (roundResult === "win") {
             playerScore++
-            console.log(`COMP SCORE: ${compScore}  YOUR SCORE: ${playerScore}`)
+            console.log(`Comp score - ${compScore}       Your score - ${playerScore}`)
         } else {
-            console.log(`COMP SCORE: ${compScore}  YOUR SCORE: ${playerScore}`)
+            console.log(`Comp score - ${compScore}       Your score - ${playerScore}`)
         }
+        console.log("")
     } 
+
+    console.log("")
+
+    if (compScore === playerScore) {
+        console.log(`    FINAL SCORE:   COMP - ${compScore}    YOU - ${playerScore}`    )
+        console.log("  **** IT'S A TIME GAME. NOBODY WINS! ****  ")
+    } else if (compScore > playerScore) {
+        console.log(`    FINAL SCORE:   COMP - ${compScore}    YOU - ${playerScore}`    )
+        console.log("  **** YOU LOSE THE GAME. COMPUTER WINS! ****  ")
+    } else {
+        console.log(`    FINAL SCORE:   COMP - ${compScore}    YOU - ${playerScore}`    )
+        console.log("  **** YOU WIN THE GAME! COMPUTER LOSES! ****  ")
+    }
 }
 
 game()
